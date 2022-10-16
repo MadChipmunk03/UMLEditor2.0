@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UMLEditor2._0.classTable.Forms;
 using UMLEditor2._0.classTable.Parts;
 
 namespace UMLEditor2._0.classTable
@@ -37,6 +38,7 @@ namespace UMLEditor2._0.classTable
             ClassMain.Attributes.Add(new ClassAttribute() { Name = "Attr2", Static = true, Visibility = (char)Visibility.Public, DataType = "string" });
         }
 
+        //ATTRIBUTES
         private void BtnDeleteAttribute_Click(object sender, EventArgs e)
         {
             if (this.DataGridAttr.CurrentRow == null) return;
@@ -66,21 +68,37 @@ namespace UMLEditor2._0.classTable
                 this.ClassMain.Attributes.Add(attribute_Form.Attribute);
         }
 
+        //METHODS
         private void BtnDeleteMeth_Click(object sender, EventArgs e)
         {
+            if (this.DataGridMeth.CurrentRow == null) return;
 
+            ClassMethod selMethod = this.DataGridMeth.CurrentRow.DataBoundItem as ClassMethod;
+            this.ClassMain.Methods.Remove(selMethod);
         }
 
         private void BtnEditMeth_Click(object sender, EventArgs e)
         {
+            if (this.DataGridMeth.CurrentRow == null) return;
 
+            ClassMethod selMethod = this.DataGridMeth.CurrentRow.DataBoundItem as ClassMethod;
+            Method_Form method_Form = new Method_Form(selMethod);
+            DialogResult result = method_Form.ShowDialog();
+
+            if (result == DialogResult.OK)
+                selMethod = method_Form.Method;
         }
 
         private void BtnAddMeth_Click(object sender, EventArgs e)
         {
+            Method_Form method_Form = new Method_Form(new ClassMethod());
+            DialogResult result = method_Form.ShowDialog();
 
+            if (result == DialogResult.OK)
+                this.ClassMain.Methods.Add(method_Form.Method);
         }
 
+        //CLASS
         private void CheckStatic_Click(object sender, EventArgs e)
         {
             this.ClassMain.Static = !this.ClassMain.Static;
