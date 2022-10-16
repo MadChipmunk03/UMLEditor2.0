@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace UMLEditor2._0.classTable.Parts
 {
     public class ClassMethod : IClassTextPart, IClassPart
     {
-        List<ClassMethodParameter> Parameters = new List<ClassMethodParameter>();
+        public BindingList<ClassMethodParameter> Parameters = new BindingList<ClassMethodParameter>();
         public char Visibility { get; set; }
         public string DataType { get; set; }
         public string Name { get; set; }
@@ -27,8 +28,8 @@ namespace UMLEditor2._0.classTable.Parts
             {
                 string paramsStr = "";
                 foreach(ClassMethodParameter param in Parameters)
-                    paramsStr = $"{param.DataType} {param.Name}";
-                if(paramsStr != "") paramsStr.Substring(0, paramsStr.Length - 1);
+                    paramsStr += $"{param.DataType} {param.Name}, ";
+                if(paramsStr != "") paramsStr = paramsStr.Substring(0, paramsStr.Length - 2);
 
                 if (Static) return $"{Visibility}static {DataType} {Name}({paramsStr})";
                 else return $"{Visibility}{DataType} {Name}({paramsStr})";
@@ -36,10 +37,9 @@ namespace UMLEditor2._0.classTable.Parts
             set { }
         }
 
-
-        public void Draw(Point corner, Graphics g, int width = 0, int height = 0)
+        public void Draw(Point corner, Graphics g, int width, int height)
         {
-
+            g.DrawString(Text, TextFont, Brushes.Black, corner.X + 10, corner.Y + (35 - TextSize.Height) / 2);
         }
     }
 }

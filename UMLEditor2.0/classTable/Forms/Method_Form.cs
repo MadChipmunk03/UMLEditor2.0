@@ -24,13 +24,44 @@ namespace UMLEditor2._0.classTable.Forms
 
             ComboVisibility.Items.AddRange(new string[] { "Public", "Private", "Protected", "Package" });
 
-            this.InpName.Text = Method.Text;
+            this.InpName.Text = Method.Name;
             this.InpDataType.Text = Method.DataType;
             if (Method.Visibility == '+') this.ComboVisibility.SelectedItem = "Public";
             else if (Method.Visibility == '-') this.ComboVisibility.SelectedItem = "Private";
             else if (Method.Visibility == '*') this.ComboVisibility.SelectedItem = "Protected";
             else this.ComboVisibility.SelectedItem = "Package"; // Default
             this.CheckStatic.Checked = Method.Static;
+
+            this.DataGridParams.DataSource = this.Method.Parameters;
+        }
+
+        private void BtnDeleteParam_Click(object sender, EventArgs e)
+        {
+            if (this.DataGridParams.CurrentRow == null) return;
+
+            ClassMethodParameter selParameter = this.DataGridParams.CurrentRow.DataBoundItem as ClassMethodParameter;
+            this.Method.Parameters.Remove(selParameter);
+        }
+
+        private void BtnEditParam_Click(object sender, EventArgs e)
+        {
+            if (this.DataGridParams.CurrentRow == null) return;
+
+            ClassMethodParameter selParameter = this.DataGridParams.CurrentRow.DataBoundItem as ClassMethodParameter;
+            Parameter_Form parameter_Form = new Parameter_Form(selParameter);
+            DialogResult result = parameter_Form.ShowDialog();
+
+            if (result == DialogResult.OK)
+                selParameter = parameter_Form.Parameter;
+        }
+
+        private void BtnAddParam_Click(object sender, EventArgs e)
+        {
+            Parameter_Form parameter_Form = new Parameter_Form(new ClassMethodParameter());
+            DialogResult result = parameter_Form.ShowDialog();
+
+            if (result == DialogResult.OK)
+                this.Method.Parameters.Add(parameter_Form.Parameter);
         }
 
         private void BtnOk_Click(object sender, EventArgs e)
@@ -43,7 +74,7 @@ namespace UMLEditor2._0.classTable.Forms
                 if (result == DialogResult.No) return;
             }
 
-            this.Method.Text = InpName.Text;
+            this.Method.Name = InpName.Text;
             this.Method.DataType = InpDataType.Text;
             this.Method.Static = CheckStatic.Checked;
 

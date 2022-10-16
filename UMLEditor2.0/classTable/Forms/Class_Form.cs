@@ -20,13 +20,8 @@ namespace UMLEditor2._0.classTable
             InitializeComponent();
             ClassMain = classMain;
 
-            this.DataGridAttr.AutoGenerateColumns = false;
-            this.DataGridAttr.DataSource = this.ClassMain.Attributes;
-            this.DataGridMeth.AutoGenerateColumns = false;
-            this.DataGridMeth.DataSource = this.ClassMain.Methods;
-
-            ComboVisibility.Items.AddRange(new string[] {"Public", "Private", "Protected", "Package"});
-
+            //Class setting
+            ComboVisibility.Items.AddRange(new string[] { "Public", "Private", "Protected", "Package" });
             this.InpName.Text = ClassMain.Title.Text;
             if (ClassMain.Visibility == '+') this.ComboVisibility.SelectedItem = "Public";
             else if (ClassMain.Visibility == '-') this.ComboVisibility.SelectedItem = "Private";
@@ -34,8 +29,17 @@ namespace UMLEditor2._0.classTable
             else this.ComboVisibility.SelectedItem = "Package"; // Default
             this.CheckStatic.Checked = ClassMain.Static;
 
+            //Attributes and Methods
+            this.DataGridAttr.AutoGenerateColumns = false;
+            this.DataGridAttr.DataSource = this.ClassMain.Attributes;
+            this.DataGridMeth.AutoGenerateColumns = false;
+            this.DataGridMeth.DataSource = this.ClassMain.Methods;
+
             ClassMain.Attributes.Add(new ClassAttribute() { Name = "Attribute1", Static = false, Visibility = (char)Visibility.Private , DataType = "int"});
             ClassMain.Attributes.Add(new ClassAttribute() { Name = "Attr2", Static = true, Visibility = (char)Visibility.Public, DataType = "string" });
+
+            ClassMain.Methods.Add(new ClassMethod() { Name = "Method1", Static = false, Visibility = (char)Visibility.Private, DataType = "int" });
+            ClassMain.Methods.Add(new ClassMethod() { Name = "Meth2", Static = true, Visibility = (char)Visibility.Public, DataType = "string" });
         }
 
         //ATTRIBUTES

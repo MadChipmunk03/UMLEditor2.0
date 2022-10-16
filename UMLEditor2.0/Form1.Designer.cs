@@ -46,12 +46,15 @@
             // 
             // Canvas
             // 
+            this.Canvas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Canvas.BackColor = System.Drawing.SystemColors.Control;
             this.Canvas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Canvas.Location = new System.Drawing.Point(209, 24);
             this.Canvas.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Canvas.Name = "Canvas";
-            this.Canvas.Size = new System.Drawing.Size(1139, 848);
+            this.Canvas.Size = new System.Drawing.Size(1148, 861);
             this.Canvas.TabIndex = 1;
             this.Canvas.TabStop = false;
             this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);

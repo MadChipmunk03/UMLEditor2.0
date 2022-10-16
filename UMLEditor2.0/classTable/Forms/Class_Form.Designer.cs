@@ -33,6 +33,7 @@
             this.ComboVisibility = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.DataGridAttr = new System.Windows.Forms.DataGridView();
+            this.Text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnDeleteAttribute = new System.Windows.Forms.Button();
             this.BtnEditAttribute = new System.Windows.Forms.Button();
             this.BtnAddAttr = new System.Windows.Forms.Button();
@@ -42,11 +43,11 @@
             this.BtnEditMeth = new System.Windows.Forms.Button();
             this.BtnDeleteMeth = new System.Windows.Forms.Button();
             this.DataGridMeth = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CheckStatic = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.BtnOk = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.Text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridAttr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridMeth)).BeginInit();
             this.SuspendLayout();
@@ -96,6 +97,7 @@
             this.DataGridAttr.AllowUserToDeleteRows = false;
             this.DataGridAttr.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridAttr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridAttr.ColumnHeadersVisible = false;
             this.DataGridAttr.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Text});
             this.DataGridAttr.Location = new System.Drawing.Point(18, 206);
@@ -107,6 +109,14 @@
             this.DataGridAttr.RowTemplate.Height = 29;
             this.DataGridAttr.Size = new System.Drawing.Size(441, 399);
             this.DataGridAttr.TabIndex = 4;
+            // 
+            // Text
+            // 
+            this.Text.DataPropertyName = "Text";
+            this.Text.HeaderText = "Název";
+            this.Text.MinimumWidth = 9;
+            this.Text.Name = "Text";
+            this.Text.ReadOnly = true;
             // 
             // BtnDeleteAttribute
             // 
@@ -165,7 +175,7 @@
             // 
             // BtnAddMeth
             // 
-            this.BtnAddMeth.Location = new System.Drawing.Point(806, 614);
+            this.BtnAddMeth.Location = new System.Drawing.Point(801, 614);
             this.BtnAddMeth.Margin = new System.Windows.Forms.Padding(4);
             this.BtnAddMeth.Name = "BtnAddMeth";
             this.BtnAddMeth.Size = new System.Drawing.Size(141, 44);
@@ -176,7 +186,7 @@
             // 
             // BtnEditMeth
             // 
-            this.BtnEditMeth.Location = new System.Drawing.Point(656, 614);
+            this.BtnEditMeth.Location = new System.Drawing.Point(650, 614);
             this.BtnEditMeth.Margin = new System.Windows.Forms.Padding(4);
             this.BtnEditMeth.Name = "BtnEditMeth";
             this.BtnEditMeth.Size = new System.Drawing.Size(141, 44);
@@ -187,7 +197,7 @@
             // 
             // BtnDeleteMeth
             // 
-            this.BtnDeleteMeth.Location = new System.Drawing.Point(506, 614);
+            this.BtnDeleteMeth.Location = new System.Drawing.Point(501, 614);
             this.BtnDeleteMeth.Margin = new System.Windows.Forms.Padding(4);
             this.BtnDeleteMeth.Name = "BtnDeleteMeth";
             this.BtnDeleteMeth.Size = new System.Drawing.Size(141, 44);
@@ -198,16 +208,30 @@
             // 
             // DataGridMeth
             // 
+            this.DataGridMeth.AllowUserToAddRows = false;
+            this.DataGridMeth.AllowUserToDeleteRows = false;
             this.DataGridMeth.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridMeth.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridMeth.Location = new System.Drawing.Point(506, 206);
+            this.DataGridMeth.ColumnHeadersVisible = false;
+            this.DataGridMeth.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            this.DataGridMeth.Location = new System.Drawing.Point(501, 207);
             this.DataGridMeth.Margin = new System.Windows.Forms.Padding(4);
             this.DataGridMeth.Name = "DataGridMeth";
+            this.DataGridMeth.ReadOnly = true;
             this.DataGridMeth.RowHeadersVisible = false;
             this.DataGridMeth.RowHeadersWidth = 51;
             this.DataGridMeth.RowTemplate.Height = 29;
             this.DataGridMeth.Size = new System.Drawing.Size(441, 399);
             this.DataGridMeth.TabIndex = 9;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Text";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Název";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 9;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // CheckStatic
             // 
@@ -249,14 +273,6 @@
             this.BtnCancel.Text = "Zrušit";
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
-            // 
-            // Text
-            // 
-            this.Text.DataPropertyName = "Text";
-            this.Text.HeaderText = "Název";
-            this.Text.MinimumWidth = 9;
-            this.Text.Name = "Text";
-            this.Text.ReadOnly = true;
             // 
             // Class_Form
             // 
@@ -311,5 +327,6 @@
         private Button BtnOk;
         private Button BtnCancel;
         private DataGridViewTextBoxColumn Text;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }

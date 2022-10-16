@@ -28,11 +28,15 @@ namespace UMLEditor2._0.classTable
         public void Draw(Graphics g)
         {
             int height = 35 + ClassPanel.BorderWidth + 35 * Attributes.Count() + 35 * Methods.Count();
+            int attrYOffset = 35 + ClassPanel.BorderWidth;
+            int methYOffset = attrYOffset + (Attributes.Count() * 35);
 
             Panel.Draw(Corner, g, MinWidth, height);
             Title.Draw(Corner, g, MinWidth, height);
             for(int i = 0; i < Attributes.Count(); i++)
-                Attributes[i].Draw(new Point(Corner.X, Corner.Y + 35 + ClassPanel.BorderWidth + (35 * i)), g, MinWidth, height);
+                Attributes[i].Draw(new Point(Corner.X, Corner.Y + attrYOffset + (35 * i)), g, MinWidth, height);
+            for (int i = 0; i < Methods.Count(); i++)
+                Methods[i].Draw(new Point(Corner.X, Corner.Y + methYOffset + (35 * i)), g, MinWidth, height);
         }
 
         public void CalcMinWidth()

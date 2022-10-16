@@ -24,7 +24,7 @@ namespace UMLEditor2._0.classTable
 
             ComboVisibility.Items.AddRange(new string[] { "Public", "Private", "Protected", "Package" });
 
-            this.InpName.Text = Attribute.Text;
+            this.InpName.Text = Attribute.Name;
             this.InpDataType.Text = Attribute.DataType;
             if (Attribute.Visibility == '+') this.ComboVisibility.SelectedItem = "Public";
             else if (Attribute.Visibility == '-') this.ComboVisibility.SelectedItem = "Private";
@@ -43,7 +43,7 @@ namespace UMLEditor2._0.classTable
                 if (result == DialogResult.No) return;
             }
 
-            this.Attribute.Text = InpName.Text;
+            this.Attribute.Name = InpName.Text;
             this.Attribute.DataType = InpDataType.Text;
             this.Attribute.Static = CheckStatic.Checked;
 
