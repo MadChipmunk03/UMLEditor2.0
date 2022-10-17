@@ -18,28 +18,58 @@ namespace UMLEditor2._0.classTable
         public BindingList<ClassMethod> Methods = new BindingList<ClassMethod>();
 
         Point Corner = new Point();
+        private int[] LastMousePos = new int[] {0, 0};
         public int MinWidth;
+        public int Height { get; set; }
+        public int Id { get; set; }
 
-        public ClassMain(Point corner)
+        public ClassMain(Point corner = new Point(), int id = 0)
         {
+            Id = id;
+            Title.Text = $"Class{Id}";
             Corner = corner;
         }
 
         public void Draw(Graphics g)
         {
-            int height = 35 + ClassPanel.BorderWidth + 35 * Attributes.Count() + 35 * Methods.Count();
             int attrYOffset = 35 + ClassPanel.BorderWidth;
-            int methYOffset = attrYOffset + (Attributes.Count() * 35);
+            int methYOffset = attrYOffset + (Attributes.Count() * 35) + ClassPanel.BorderWidth;
 
-            Panel.Draw(Corner, g, MinWidth, height);
-            Title.Draw(Corner, g, MinWidth, height);
+            Panel.Draw(Corner, g, MinWidth, Height, methYOffset);
+            Title.Draw(Corner, g, MinWidth);
             for(int i = 0; i < Attributes.Count(); i++)
-                Attributes[i].Draw(new Point(Corner.X, Corner.Y + attrYOffset + (35 * i)), g, MinWidth, height);
+                Attributes[i].Draw(new Point(Corner.X, Corner.Y + attrYOffset + (35 * i)), g);
             for (int i = 0; i < Methods.Count(); i++)
-                Methods[i].Draw(new Point(Corner.X, Corner.Y + methYOffset + (35 * i)), g, MinWidth, height);
+                Methods[i].Draw(new Point(Corner.X, Corner.Y + methYOffset + (35 * i)), g);
         }
 
-        public void CalcMinWidth()
+        public void MouseMove(MouseEventArgs e)
+        {
+            if ((e.X >= Corner.X && e.X <= Corner.X + MinWidth) && 
+                (e.Y >= Corner.Y && e.Y <= Corner.Y + Height))
+            {
+                if(e.Button.ToString() == "Left")
+                {
+                    //MessageBox.Show($"{LastMousePos[0]}, {e.X}, {LastMousePos[1]}, {e.Y}");
+                    Corner = new Point(Corner.X -= LastMousePos[0] - e.X, Corner.Y -= LastMousePos[1] - e.Y);
+                    LastMousePos[0] = e.X;
+                    LastMousePos[1] = e.Y;
+                }
+                else if (e.Button.ToString() == "None")
+                {
+                    LastMousePos[0] = e.X;
+                    LastMousePos[1] = e.Y;
+                }
+            }
+        }
+
+        public bool DoubleClickedByMouse(MouseEventArgs e)
+        {
+            return (e.X >= Corner.X && e.X <= Corner.X + MinWidth) &&
+                   (e.Y >= Corner.Y && e.Y <= Corner.Y + Height);
+        }
+
+        public void CalcDimensions()
         {
             MinWidth = 25;
             IClassTextPart[] textParts = new IClassTextPart[] { Title};
@@ -48,6 +78,7 @@ namespace UMLEditor2._0.classTable
                 if(textPart.TextSize.Width > MinWidth - 25)
                     MinWidth = textPart.TextSize.Width + 25;
             }
+            Height = 35 + (2 * ClassPanel.BorderWidth) + 35 * Attributes.Count() + 35 * Methods.Count();
         }
     }
 }

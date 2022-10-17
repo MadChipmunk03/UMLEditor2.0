@@ -14,7 +14,7 @@ namespace UMLEditor2._0.classTable
 {
     public partial class Class_Form : Form
     {
-        public ClassMain ClassMain = new ClassMain(new Point(0, 0));
+        public ClassMain ClassMain = new ClassMain();
         public Class_Form(ClassMain classMain)
         {
             InitializeComponent();

@@ -8,6 +8,6 @@ namespace UMLEditor2._0.classTable.Parts
 {
     public interface IClassPart
     {
-        void Draw(Point corner, Graphics g, int width = 0, int height = 0);
+        //void Draw(Point corner, Graphics g, int width = 0, int height = 0);
     }
 }

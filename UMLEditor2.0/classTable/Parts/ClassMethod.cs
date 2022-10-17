@@ -37,7 +37,7 @@ namespace UMLEditor2._0.classTable.Parts
             set { }
         }
 
-        public void Draw(Point corner, Graphics g, int width, int height)
+        public void Draw(Point corner, Graphics g)
         {
             g.DrawString(Text, TextFont, Brushes.Black, corner.X + 10, corner.Y + (35 - TextSize.Height) / 2);
         }
