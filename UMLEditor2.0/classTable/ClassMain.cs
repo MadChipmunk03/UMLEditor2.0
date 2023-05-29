@@ -8,16 +8,16 @@ using UMLEditor2._0.classTable.Parts;
 
 namespace UMLEditor2._0.classTable
 {
-    public class ClassMain
+    public class ClassMain : IDiagramPart
     {
         private ClassPanel Panel = new ClassPanel();
-        public ClassTitle Title = new ClassTitle("Class1");
+        public ClassTitle Title = new ClassTitle();
         public char Visibility { get; set; }
         public bool Static { get; set; }
         public BindingList<ClassAttribute> Attributes = new BindingList<ClassAttribute>();
         public BindingList<ClassMethod> Methods = new BindingList<ClassMethod>();
 
-        Point Corner = new Point();
+        public Point Corner = new Point();
         private int[] LastMousePos = new int[] {0, 0};
         public int MinWidth;
         public int Height { get; set; }
@@ -25,9 +25,9 @@ namespace UMLEditor2._0.classTable
 
         public ClassMain(Point corner = new Point(), int id = 0)
         {
+            Corner = corner;
             Id = id;
             Title.Text = $"Class{Id}";
-            Corner = corner;
         }
 
         public void Draw(Graphics g)

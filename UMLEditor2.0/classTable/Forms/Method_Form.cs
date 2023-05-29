@@ -22,14 +22,14 @@ namespace UMLEditor2._0.classTable.Forms
 
             InitializeComponent();
 
-            ComboVisibility.Items.AddRange(new string[] { "Public", "Private", "Protected", "Package" });
+            ComboVisibility.Items.AddRange(new string[] { "Public", "Private", "Protected", "Internal" });
 
             this.InpName.Text = Method.Name;
             this.InpDataType.Text = Method.DataType;
             if (Method.Visibility == '+') this.ComboVisibility.SelectedItem = "Public";
             else if (Method.Visibility == '-') this.ComboVisibility.SelectedItem = "Private";
             else if (Method.Visibility == '*') this.ComboVisibility.SelectedItem = "Protected";
-            else this.ComboVisibility.SelectedItem = "Package"; // Default
+            else this.ComboVisibility.SelectedItem = "Internal"; // Default
             this.CheckStatic.Checked = Method.Static;
 
             this.DataGridParams.DataSource = this.Method.Parameters;
@@ -82,7 +82,7 @@ namespace UMLEditor2._0.classTable.Forms
             if (selectedVisibility == "Public") this.Method.Visibility = (char)Visibility.Public;
             else if (selectedVisibility == "Private") this.Method.Visibility = (char)Visibility.Private;
             else if (selectedVisibility == "Protected") this.Method.Visibility = (char)Visibility.Protected;
-            else if (selectedVisibility == "Package") this.Method.Visibility = (char)Visibility.Package;
+            else if (selectedVisibility == "Internal") this.Method.Visibility = (char)Visibility.Internal;
 
             this.DialogResult = DialogResult.OK;
         }

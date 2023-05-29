@@ -18,11 +18,6 @@ namespace UMLEditor2._0.classTable.Parts
             }
         }
 
-        public ClassTitle(string title)
-        {
-            Text = title;
-        }
-
         public void Draw(Point corner, Graphics g, int width = 0)
         {
             g.DrawString(Text, TextFont, Brushes.White, corner.X + (width - TextSize.Width) / 2, corner.Y + (35 - TextSize.Height) / 2);

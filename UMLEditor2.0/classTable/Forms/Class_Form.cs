@@ -15,18 +15,19 @@ namespace UMLEditor2._0.classTable
     public partial class Class_Form : Form
     {
         public ClassMain ClassMain = new ClassMain();
-        public Class_Form(ClassMain classMain)
+        public Class_Form(ClassMain classMain, bool isNew = true)
         {
             InitializeComponent();
             ClassMain = classMain;
+            if (!isNew) BtnCancel.Text = "Odstranit";
 
             //Class setting
-            ComboVisibility.Items.AddRange(new string[] { "Public", "Private", "Protected", "Package" });
+            ComboVisibility.Items.AddRange(new string[] { "Public", "Private", "Protected", "Internal" });
             this.InpName.Text = ClassMain.Title.Text;
             if (ClassMain.Visibility == '+') this.ComboVisibility.SelectedItem = "Public";
             else if (ClassMain.Visibility == '-') this.ComboVisibility.SelectedItem = "Private";
             else if (ClassMain.Visibility == '*') this.ComboVisibility.SelectedItem = "Protected";
-            else this.ComboVisibility.SelectedItem = "Package"; // Default
+            else this.ComboVisibility.SelectedItem = "Internal"; // Default
             this.CheckStatic.Checked = ClassMain.Static;
 
             //Attributes and Methods
@@ -37,7 +38,6 @@ namespace UMLEditor2._0.classTable
 
             ClassMain.Attributes.Add(new ClassAttribute() { Name = "Attribute1", Static = false, Visibility = (char)Visibility.Private , DataType = "int"});
             ClassMain.Attributes.Add(new ClassAttribute() { Name = "Attr2", Static = true, Visibility = (char)Visibility.Public, DataType = "string" });
-
             ClassMain.Methods.Add(new ClassMethod() { Name = "Method1", Static = false, Visibility = (char)Visibility.Private, DataType = "int" });
             ClassMain.Methods.Add(new ClassMethod() { Name = "Meth2", Static = true, Visibility = (char)Visibility.Public, DataType = "string" });
         }
@@ -114,7 +114,7 @@ namespace UMLEditor2._0.classTable
             if (selectedVisibility == "Public") this.ClassMain.Visibility = (char)Visibility.Public;
             else if (selectedVisibility == "Private") this.ClassMain.Visibility = (char)Visibility.Private;
             else if (selectedVisibility == "Protected") this.ClassMain.Visibility = (char)Visibility.Protected;
-            else if (selectedVisibility == "Package") this.ClassMain.Visibility = (char)Visibility.Package;
+            else if (selectedVisibility == "Internal") this.ClassMain.Visibility = (char)Visibility.Internal;
         }
 
         private void InpName_TextChanged(object sender, EventArgs e)

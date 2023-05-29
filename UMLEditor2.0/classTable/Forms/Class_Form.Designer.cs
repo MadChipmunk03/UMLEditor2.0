@@ -281,8 +281,8 @@
             this.ClientSize = new System.Drawing.Size(962, 755);
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.BtnOk);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.CheckStatic);
+            //this.Controls.Add(this.label5);
+            //this.Controls.Add(this.CheckStatic);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.BtnAddMeth);
             this.Controls.Add(this.BtnEditMeth);

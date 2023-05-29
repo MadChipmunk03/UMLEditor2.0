@@ -11,6 +11,6 @@ namespace UMLEditor2._0.classTable
         Public = '+',
         Private = '-',
         Protected = '*',
-        Package = '~'
+        Internal = '~'
     }
 }
